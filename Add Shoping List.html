@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dom</title>
-    <style>
-      .remove {
-        display: none;
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dom</title>
+  <style>
+    .remove {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <h1>Shopping List</h1>
+    <p>Get it done today</p>
+    <p>No excuses</p>
+    <ul id="newText">
+      <li>Notebook</li>
+      <li>Jello</li>
+      <li>Spinach</li>
+      <li>Rice</li>
+      <li>Birthday Cake</li>
+      <li>Candles</li>
+    </ul>
+
+    <input type="text" id="inputText" placeholder="Item Entry" name="fname" />
+    <button>Click Me!</button>
+  </div>
+
+  <script>
+    const btn = document.getElementsByTagName("button")[0];
+    const input = document.getElementById("inputText");
+
+    function entry() {
+      let li = document.createElement("li");
+      li.innerHTML = input.value;
+      document.getElementById("newText").appendChild(li);
+      input.value = "";
+    }
+
+    function clickBtn() {
+      if (input.value !== "") {
+        entry();
+      } else {
+        alert("Please Enter a valid Item");
       }
-    </style>
-  </head>
-  <body>
-    <div>
-      <h1>Shopping List</h1>
-      <p>Get it done today</p>
-      <p>No excuses</p>
-      <ul id="newText">
-        <li>Notebook</li>
-        <li>Jello</li>
-        <li>Spinach</li>
-        <li>Rice</li>
-        <li>Birthday Cake</li>
-        <li>Candles</li>
-      </ul>
+    }
 
-      <input type="text" id="inputText" placeholder="Item Entry" name="fname" />
-      <button>Click Me!</button>
-    </div>
-
-    <script>
-      const btn = document.getElementsByTagName("button")[0];
-      const input = document.getElementById("inputText");
-
-      function entry() {
-        let li = document.createElement("li");
-        li.innerHTML = input.value;
-        document.getElementById("newText").appendChild(li);
-        input.value = "";
+    function pressKey(e) {
+      if (input.value === "") {
+      } else if (e.keyCode === 13) {
+        entry();
       }
+    }
+    btn.addEventListener("click", clickBtn);
+    input.addEventListener("keypress", pressKey);
+  </script>
+</body>
 
-      function clickBtn() {
-        if (input.value !== "") {
-          entry();
-        } else {
-          alert("Please Enter a valid Item");
-        }
-      }
-
-      function pressKey(e) {
-        if (input.value === "") {
-        } else if (e.keyCode === 13) {
-          entry();
-        }
-      }
-      btn.addEventListener("click", clickBtn);
-      input.addEventListener("keypress", pressKey);
-    </script>
-  </body>
 </html>
